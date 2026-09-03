@@ -14,19 +14,20 @@ router.use(
 
 // TMF632 - ADD THIS
 router.use(
-  '/tmf-api/party/v1',
+  '/tmf-api/party/v4',
   customerProxy
 );
 
 // Existing old route, keep if needed
+//Tharini uses this
 router.use(
-  '/tmf-api/partyManagement/v1',
+  '/tmf-api/partyManagement/v4',
   customerProxy
 );
 
 // TMF666
 router.use(
-  '/tmf-api/accountManagement/v1',
+  '/tmf-api/accountManagement/v4',
   customerProxy
 );
 
