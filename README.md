@@ -28,32 +28,32 @@ Every path below also accepts all nested resources under that prefix.
 
 | Gateway path | Downstream service | Port | TMF |
 |---|---|---:|---|
-| `/internal-api/iam/v1/auth/login` | IAM | 3001 | Auth |
-| `/internal-api/iam/v1/auth/refresh` | IAM | 3001 | Auth |
-| `/internal-api/iam/v1/*` | IAM | 3001 | Internal |
+| `/internal-api/iam/v4/auth/login` | IAM | 3001 | Auth |
+| `/internal-api/iam/v4/auth/refresh` | IAM | 3001 | Auth |
+| `/internal-api/iam/v4/*` | IAM | 3001 | Internal |
 | `/tmf-api/customerManagement/v4/*` | Customer | 3002 | TMF629 |
 | `/tmf-api/partyManagement/v4/*` | Customer | 3002 | TMF632 |
 | `/tmf-api/accountManagement/v4/*` | Customer | 3002 | TMF666 |
 | `/tmf-api/communicationManagement/v4/*` | Customer Engagement | 3003 | TMF681 |
-| `/internal-api/platform/v1/health` | Platform | 3004 | Public health |
-| `/internal-api/platform/v1/*` | Platform | 3004 | Internal |
+| `/internal-api/platform/v4/health` | Platform | 3004 | Public health |
+| `/internal-api/platform/v4/*` | Platform | 3004 | Internal |
 | `/tmf-api/productCatalogManagement/v4/*` | Product Catalog | 3005 | TMF620 |
 | `/tmf-api/productInventoryManagement/v4/*` | Product Inventory | 3005 | TMF637 |
 | `/tmf-api/customerBillManagement/v4/*` | Billing | 3006 | TMF678 |
 | `/tmf-api/paymentManagement/v4/*` | Billing | 3006 | TMF676 |
-| `/internal-api/sales/v1/*` | New Connection & Sales | 3007 | Internal |
+| `/internal-api/sales/v4/*` | New Connection & Sales | 3007 | Internal |
 | `/tmf-api/usageManagement/v4/*` | Usage | 3008 | TMF635 |
 | `/tmf-api/productOrderingManagement/v4/*` | Product Ordering | 3009 | TMF622 |
-| `/internal-api/reporting/v1/*` | Reporting | 3010 | Internal |
+| `/internal-api/reporting/v4/*` | Reporting | 3010 | Internal |
 
 The Gateway restores the original Gateway path before proxying. Therefore a downstream TMF service receives the same `/tmf-api/...` path that the client requested.
 
 ## 3. Authentication
 
 Public:
-- `POST /internal-api/iam/v1/auth/login`
-- `POST /internal-api/iam/v1/auth/refresh`
-- `GET /internal-api/platform/v1/health`
+- `POST /internal-api/iam/v4/auth/login`
+- `POST /internal-api/iam/v4/auth/refresh`
+- `GET /internal-api/platform/v4/health`
 - `GET /health` (Gateway's own health endpoint)
 
 All other Gateway routes require:
@@ -145,7 +145,7 @@ Gateway health:
 
 Platform health through Gateway:
 
-`GET http://localhost:8080/internal-api/platform/v1/health`
+`GET http://localhost:8080/internal-api/platform/v4/health`
 
 ## 7. Important limitation
 
@@ -194,13 +194,13 @@ API Gateway :8080
         |
         +---- /tmf-api/communicationManagement/v4/* -> Engagement :3003
         |
-        +---- /internal-api/sales/v1/* ---------------> Sales :3007
+        +---- /internal-api/sales/v4/* ---------------> Sales :3007
         |
-        +---- /internal-api/reporting/v1/* -----------> Reporting :3010
+        +---- /internal-api/reporting/v4/* -----------> Reporting :3010
         |
-        +---- /internal-api/platform/v1/* ------------> Platform :3004
+        +---- /internal-api/platform/v4/* ------------> Platform :3004
         |
-        +---- /internal-api/iam/v1/* -----------------> IAM :3001
+        +---- /internal-api/iam/v4/* -----------------> IAM :3001
 ```
 
 ## 10. Team rule
